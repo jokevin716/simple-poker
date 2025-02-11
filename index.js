@@ -8,9 +8,9 @@ const rl = readline.createInterface({
 
 // create card class
 class Card {
-  constructor(suit, rank) {
-    this.suit = suit
+  constructor(rank, suit) {
     this.rank = rank
+    this.suit = suit
   }
 
   // translating cards to string. note: T = 10
@@ -64,7 +64,7 @@ class Deck {
     // create all cards
     for(let suit of suits) {
       for(let rank of ranks) {
-        this.cards.push(new Card(suit, rank))
+        this.cards.push(new Card(rank, suit))
       }
     }
 
@@ -290,23 +290,23 @@ class Hand {
     return [...this.cards].sort((a, b) => {
       // count occurrences of each rank in the hand
       let rankCounts = this.cards.reduce((counts, card) => {
-        counts[card.rank] = (counts[card.rank] || 0) + 1;
-        return counts;
-      }, {});
+        counts[card.rank] = (counts[card.rank] || 0) + 1
+        return counts
+      }, {})
 
       // then, compare by frequency of rank
-      let freqDiff = rankCounts[b.rank] - rankCounts[a.rank];
+      let freqDiff = rankCounts[b.rank] - rankCounts[a.rank]
       if(freqDiff !== 0) 
-        return freqDiff;
+        return freqDiff
 
       // then, compare by rank first
-      let rankDiff = Card.getRankValue(b.rank, isLowAce) - Card.getRankValue(a.rank, isLowAce);
+      let rankDiff = Card.getRankValue(b.rank, isLowAce) - Card.getRankValue(a.rank, isLowAce)
       if(rankDiff !== 0)
-        return rankDiff;
+        return rankDiff
 
       // last, compare by suit
-      return Card.getSuitValue(b.suit) - Card.getSuitValue(a.suit);
-    });
+      return Card.getSuitValue(b.suit) - Card.getSuitValue(a.suit)
+    })
   }
 }
 
@@ -319,13 +319,6 @@ function compareHands(pl1Cards, npcCards) {
   // get tier each hand
   let pl1Tier = pl1Hand.getTier()
   let npcTier = npcHand.getTier()
-
-  // sorted hand
-  let pl1HandSort = pl1Hand.getHighCardValue();
-  let npcHandSort = npcHand.getHighCardValue();
-
-  console.log(pl1HandSort)
-  console.log(npcHandSort)
 
   // winner = player, if player tier is higher than the system
   if(pl1Tier.tier > npcTier.tier) {
@@ -342,8 +335,8 @@ function compareHands(pl1Cards, npcCards) {
   // evaluate each cards if both players have same tier
   else {
     // sorted hand
-    let pl1HandSort = pl1Hand.getHighCardValue();
-    let npcHandSort = npcHand.getHighCardValue();
+    let pl1HandSort = pl1Hand.getHighCardValue()
+    let npcHandSort = npcHand.getHighCardValue()
 
     // define variables
     let winner = ''
@@ -449,27 +442,37 @@ function playPoker() {
         console.log(res.message)
       }
       catch(e) {
-        console.log('\nError:', e.message);
-        console.log('Starting new round with fresh deck...\n');
-        break;
+        console.log('\nError:', e.message)
+        console.log('Starting new round with fresh deck...\n')
+        break
       }
 
       // create question
       let answer = await new Promise(resolve => {
-        rl.question('\nPlay again? (y/n): ', resolve);
-      });
+        rl.question('\nPlay again? (y/n): ', resolve)
+      })
 
       // if no, then the game stops
       if(answer.toLowerCase() !== 'y') {
-        console.log('\nThanks for playing!\n');
-        rl.close();
-        break;
+        console.log('\nThanks for playing!\n')
+        setTimeout(() => {
+          rl.close()
+        }, 2000)
+        break
       }
 
-      console.log('\n-------------------\n');
+      console.log('\n-------------------\n')
     }
   })
 }
 
 // run the game
 playPoker()
+
+// =================================================================
+module.exports = { 
+  Card, 
+  Hand, 
+  Deck,
+  compareHands,
+}

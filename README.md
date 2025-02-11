@@ -14,8 +14,8 @@ A simple command-line poker game built with pure Node.js.
 ### Option 1: Run with Node.js
 1. Clone this repository:
    ```sh
-   git clone https://github.com/yourusername/poker-cli.git
-   cd poker-cli
+   git clone https://github.com/jokevin716/simple-poker.git
+   cd simple-poker
    ```
 2. Install dependencies:
    ```sh
@@ -27,11 +27,11 @@ A simple command-line poker game built with pure Node.js.
    ```
 
 ### Option 2: Run as an Executable
-1. Download the prebuilt executable from [Releases](https://github.com/yourusername/poker-cli/releases).
+1. Download the prebuilt executable from [Releases](https://github.com/jokevin716/simple-poker/releases).
 2. Run it:
    ```sh
-   ./poker-cli   # macOS/Linux
-   poker-cli.exe  # Windows
+   ./simple-poker   # macOS/Linux
+   simple-poker.exe  # Windows
    ```
 
 ## 🌜 How to Play
@@ -53,10 +53,10 @@ A simple command-line poker game built with pure Node.js.
 | One Pair | A single pair |
 | High Card | Highest individual card |
 
-## 🛠️ Development
-If you want to modify the game:
+## 🛠️ Testing
+If you want to run test mode:
 ```sh
-npm run dev
+npm run test
 ```
 
 ## 📌 License
