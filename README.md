@@ -27,8 +27,7 @@ A simple command-line poker game built with pure Node.js.
    ```
 
 ### Option 2: Run as an Executable
-1. Download the prebuilt executable from [Releases](https://github.com/jokevin716/simple-poker/releases).
-2. Run it:
+1. Run it from executable file in root folder:
    ```sh
    simple-poker.exe
    ```
